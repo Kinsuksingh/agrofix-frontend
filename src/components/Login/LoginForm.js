@@ -8,20 +8,17 @@ import {
   Alert,
   Dropdown,
 } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom'; // ✅ Import useNavigate
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
-  const [role, setRole] = useState('user');
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
     phoneNumber: '',
-    password: '',
-    name: '',
   });
   const [message, setMessage] = useState({ type: '', text: '' });
 
-  const navigate = useNavigate(); // ✅ Setup navigate
+  const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,54 +34,18 @@ function LoginForm() {
     setMessage({ type: '', text: '' });
 
     try {
-      let endpoint = '';
-      let payload = {};
-
-      if (role === 'admin') {
-        if (isSignup) {
-          endpoint = '/api/admin/signup';
-          payload = {
-            name: formData.name,
-            username: formData.username,
-            password: formData.password,
-          };
-        } else {
-          endpoint = '/api/admin/login';
-          payload = {
-            username: formData.username,
-            password: formData.password,
-          };
-        }
-      } else {
-        if (isSignup) {
-          endpoint = '/api/user/signup';
-          payload = {
-            username: formData.username,
-            phoneNumber: formData.phoneNumber,
-          };
-        } else {
-          endpoint = '/api/user/login';
-          payload = {
-            username: formData.username,
-            phoneNumber: formData.phoneNumber,
-          };
-        }
-      }
+      const endpoint = isSignup ? '/api/user/signup' : '/api/user/login';
+      const payload = {
+        username: formData.username,
+        phoneNumber: formData.phoneNumber,
+      };
 
       const res = await axios.post(endpoint, payload);
       setMessage({ type: 'success', text: res.data.message });
 
-      console.log('API Response:', res.data);
-
-      // ✅ Redirect based on role
       setTimeout(() => {
-        if (role === 'admin') {
-          navigate('/admin');
-        } else {
-          navigate('/user');
-        }
-      }, 1000); // Optional: delay to show success message
-
+        navigate('/user');
+      }, 1000);
     } catch (error) {
       const msg = error.response?.data?.message || 'Something went wrong';
       setMessage({ type: 'danger', text: msg });
@@ -102,11 +63,13 @@ function LoginForm() {
           <div className="text-center mb-4">
             <Dropdown>
               <Dropdown.Toggle variant="outline-dark" className="rounded-pill px-4 py-2">
-                Role: {role === 'admin' ? 'Admin' : 'User'}
+                Role: User
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item onClick={() => setRole('user')}>User</Dropdown.Item>
-                <Dropdown.Item onClick={() => setRole('admin')}>Admin</Dropdown.Item>
+                <Dropdown.Item disabled>User</Dropdown.Item>
+                <Dropdown.Item onClick={() => navigate('/admin')}>
+                  Admin Panel
+                </Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
           </div>
@@ -118,19 +81,6 @@ function LoginForm() {
           )}
 
           <Form onSubmit={handleSubmit}>
-            {isSignup && role === 'admin' && (
-              <Form.Group className="mb-3">
-                <Form.Control
-                  type="text"
-                  name="name"
-                  placeholder="Full Name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                />
-              </Form.Group>
-            )}
-
             <Form.Group className="mb-3">
               <Form.Control
                 type="text"
@@ -142,29 +92,16 @@ function LoginForm() {
               />
             </Form.Group>
 
-            {role === 'admin' ? (
-              <Form.Group className="mb-3">
-                <Form.Control
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  value={formData.password}
-                  onChange={handleInputChange}
-                  required
-                />
-              </Form.Group>
-            ) : (
-              <Form.Group className="mb-3">
-                <Form.Control
-                  type="tel"
-                  name="phoneNumber"
-                  placeholder="Phone Number"
-                  value={formData.phoneNumber}
-                  onChange={handleInputChange}
-                  required
-                />
-              </Form.Group>
-            )}
+            <Form.Group className="mb-3">
+              <Form.Control
+                type="tel"
+                name="phoneNumber"
+                placeholder="Phone Number"
+                value={formData.phoneNumber}
+                onChange={handleInputChange}
+                required
+              />
+            </Form.Group>
 
             <Button type="submit" variant="dark" className="w-100 rounded-pill py-2 mt-2">
               {isSignup ? 'Sign Up' : 'Login'}
