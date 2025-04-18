@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route,Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import NavigationBar from './components/Navbar/NavigationBar';
 import Footer from './components/Footer/Footer';
 import Products from './pages/products/Products';
@@ -9,6 +9,7 @@ import Cart from './pages/cart/CartPage';
 import UserOrdersPage from './pages/users/UserOrdersPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import { CartProvider } from './context/CartContext';
+import AdminLogin from './pages/admin/AdminLogin'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route path="/cart" element={<Cart />} />
             <Route path="/user" element={<UserOrdersPage />} />
             <Route path="/admin" element={<AdminDashboard/>} />
+            <Route path="/adminlogin" element={<AdminLogin/>} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>

@@ -67,7 +67,7 @@ function LoginForm() {
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item disabled>User</Dropdown.Item>
-                <Dropdown.Item onClick={() => navigate('/admin')}>
+                <Dropdown.Item onClick={() => navigate('/adminlogin')}>
                   Admin Panel
                 </Dropdown.Item>
               </Dropdown.Menu>
