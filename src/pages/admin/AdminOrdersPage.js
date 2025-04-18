@@ -31,7 +31,7 @@ const AdminOrdersPage = () => {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        const res = await axios.get("/api/admin/orders", {
+        const res = await axios.get("https://agrofix-backend-beta.vercel.app/api/admin/orders", {
           headers: {
             username: "adminuser",
             password: "adminpass",
