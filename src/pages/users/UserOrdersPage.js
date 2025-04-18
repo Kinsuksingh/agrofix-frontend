@@ -112,7 +112,7 @@ const UserOrdersPage = () => {
     if (orders.length > 0) {
       sortAndFilterOrders(orders, status, sortBy);
     }
-  }, [sortBy, status]);
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();

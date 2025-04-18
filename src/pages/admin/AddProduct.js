@@ -7,7 +7,6 @@ import {
   Row,
   Col,
   Alert,
-  Image,
 } from "react-bootstrap";
 
 const AddProduct = () => {
