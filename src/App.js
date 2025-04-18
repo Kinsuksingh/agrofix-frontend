@@ -10,6 +10,8 @@ import UserOrdersPage from './pages/users/UserOrdersPage';
 import AdminDashboard from './pages/admin/AdminDashboard';
 import { CartProvider } from './context/CartContext';
 import AdminLogin from './pages/admin/AdminLogin'
+import AddProduct from './pages/admin/AddProduct';
+import AdminOrdersPage from './pages/admin/AdminOrdersPage';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
             <Route path="/user" element={<UserOrdersPage />} />
             <Route path="/admin" element={<AdminDashboard/>} />
             <Route path="/adminlogin" element={<AdminLogin/>} />
+            <Route path="/admin/add-product" element={<AddProduct />} />
+            <Route path="/admin/orders" element={<AdminOrdersPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
