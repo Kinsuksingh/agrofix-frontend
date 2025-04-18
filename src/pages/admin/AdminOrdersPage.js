@@ -33,8 +33,8 @@ const AdminOrdersPage = () => {
       try {
         const res = await axios.get("https://agrofix-backend-beta.vercel.app/api/admin/orders", {
           headers: {
-            username: "adminuser",
-            password: "adminpass",
+            username: "admin1",
+            password: "securepass123",
           },
         });
         const data = res.data.orders;
