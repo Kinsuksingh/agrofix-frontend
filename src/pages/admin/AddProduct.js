@@ -44,7 +44,7 @@ const AddProduct = () => {
         min_order_kg: parseFloat(product.min_order_kg),
       };
 
-      await axios.post("/api/products", payload, {
+      await axios.post("https://agrofix-backend-beta.vercel.app/api/products", payload, {
         headers: {
           "Content-Type": "application/json",
           username: "admin1",

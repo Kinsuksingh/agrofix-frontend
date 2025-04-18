@@ -38,7 +38,7 @@ const UserOrdersPage = () => {
 
     // We're now requesting all orders regardless of status filter
     // Status filtering will be done client-side
-    let url = `http://localhost:5000/api/user/orders?phone=${phone}`;
+    let url = `https://agrofix-backend-beta.vercel.app/api/user/orders?phone=${phone}`;
 
     try {
       const response = await fetch(url);

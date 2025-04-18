@@ -41,7 +41,7 @@ const AdminDashboard = () => {
   const handleDelete = async () => {
     setDeleteLoading(true);
     try {
-      await axios.delete(`/api/products/${deleteId}`, {
+      await axios.delete(`https://agrofix-backend-beta.vercel.app/api/products/${deleteId}`, {
         headers: {
           username: "admin1",
           password: "securepass123",
@@ -67,7 +67,7 @@ const AdminDashboard = () => {
     setStatusLoading(true);
     try {
       await axios.put(
-        `/api/admin/orders/${orderId}/status`,
+        `https://agrofix-backend-beta.vercel.app/api/admin/orders/${orderId}/status`,
         { status: newStatus },
         {
           headers: {

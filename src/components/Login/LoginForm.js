@@ -34,7 +34,7 @@ function LoginForm() {
     setMessage({ type: '', text: '' });
 
     try {
-      const endpoint = isSignup ? '/api/user/signup' : '/api/user/login';
+      const endpoint = isSignup ? 'https://agrofix-backend-beta.vercel.app/api/user/signup' : 'https://agrofix-backend-beta.vercel.app/api/user/login';
       const payload = {
         username: formData.username,
         phoneNumber: formData.phoneNumber,
