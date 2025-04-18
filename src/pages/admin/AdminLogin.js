@@ -31,7 +31,7 @@ const AdminLogin = () => {
     setMessage({ type: '', text: '' });
 
     try {
-      const endpoint = isSignup ? '/api/admin/signup' : '/api/admin/login';
+      const endpoint = isSignup ? 'https://agrofix-backend-beta.vercel.app/api/admin/signup' : 'https://agrofix-backend-beta.vercel.app/api/admin/login';
       const payload = isSignup
         ? { name: formData.name, username: formData.username, password: formData.password }
         : { username: formData.username, password: formData.password };
