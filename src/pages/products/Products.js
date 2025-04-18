@@ -23,7 +23,7 @@ function Products() {
 
   useEffect(() => {
     axios
-      .get('https://agrofix-backend-beta.vercel.app/api/products')
+      .get('/api/products')
       .then((res) => {
         if (res.data.success) {
           setProducts(res.data.data);
