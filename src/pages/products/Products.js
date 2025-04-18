@@ -25,7 +25,6 @@ function Products() {
     axios
       .get('/api/products')
       .then((res) => {
-        console.log(res);
         if (res.data.success) {
           setProducts(res.data.data);
           const initialQuantities = {};
